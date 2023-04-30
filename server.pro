@@ -17,9 +17,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
+    senddata.cpp \
     server.cpp
 
 HEADERS += \
+    senddata.h \
     server.h
 
 FORMS +=

@@ -1,3 +1,5 @@
+#include "senddata.h"
+
 #include <QWidget>
 #include <QLabel>
 #include <QGridLayout>
@@ -5,7 +7,7 @@
 #include <QSlider>
 #include <QPushButton>
 #include <QUdpSocket>
-
+#include <QThread>
 class Server : public QWidget
 {
     Q_OBJECT
@@ -35,5 +37,8 @@ private:
 
     QPushButton *button = new QPushButton("Отправить");
 
-    QUdpSocket *udpSocket = new QUdpSocket;
+
+
+    QThread thread_1;
+    SendData sender_1;
 };
