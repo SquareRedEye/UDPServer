@@ -6,7 +6,6 @@
 #include <QVBoxLayout>
 #include <QSlider>
 #include <QPushButton>
-#include <QUdpSocket>
 #include <QThread>
 class Server : public QWidget
 {
@@ -37,8 +36,6 @@ private:
 
     QPushButton *button = new QPushButton("Отправить");
 
-
-
-    QThread thread_1;
     SendData sender_1;
+    QThread thread_1;
 };

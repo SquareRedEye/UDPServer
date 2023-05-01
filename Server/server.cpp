@@ -38,6 +38,10 @@ Server::Server(QWidget *parent)
     MyVBox -> addWidget(button);
 
     connect(button, SIGNAL(released()), this, SLOT(buttonClicked()));
+
+    connect(&thread_1, &QThread::started, &sender_1, &SendData::send);
+    connect(&sender_1, &SendData::finished, &thread_1, &QThread::terminate);
+    sender_1.moveToThread(&thread_1);
 }
 
 Server::~Server()
@@ -48,11 +52,9 @@ void Server::buttonClicked()
 {
     sender_1.messege = label4 -> text() + " " + label5 -> text() + " " + label6 -> text();
     //Отправка данных клиенту
-    connect(&thread_1, &QThread::started, &sender_1, &SendData::send);
-    connect(&sender_1, &SendData::finished, &thread_1, &QThread::terminate);
-    sender_1.moveToThread(&thread_1);
-    thread_1.start();
 
+
+    thread_1.start();
 }
 
 void Server::slider1VChanged(int value)

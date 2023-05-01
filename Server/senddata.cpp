@@ -8,6 +8,6 @@ SendData::SendData(QObject *parent) :
 
 void SendData::send()
 {
-    //udpSocket -> writeDatagram(messege.toLatin1(), QHostAddress::LocalHost, 5555);
+    udpSocket -> writeDatagram(messege.toLatin1(), QHostAddress::LocalHost, 5555);
     emit finished();
 }
