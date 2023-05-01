@@ -39,22 +39,22 @@ Server::Server(QWidget *parent)
 
     connect(button, SIGNAL(released()), this, SLOT(buttonClicked()));
 
-    connect(&thread_1, &QThread::started, &sender_1, &SendData::send);
-    connect(&sender_1, &SendData::finished, &thread_1, &QThread::terminate);
-    sender_1.moveToThread(&thread_1);
+    sender_1 = new SendData;
+    sender_1->moveToThread(&thread_1);
+
+    connect(&thread_1, &QThread::finished, sender_1, &QObject::deleteLater);
+    connect(this, &Server::send, sender_1, &SendData::send);
+    thread_1.start();
 }
 
 Server::~Server()
 {
-
+    thread_1.quit();
+    thread_1.wait();
 }
 void Server::buttonClicked()
 {
-    sender_1.messege = label4 -> text() + " " + label5 -> text() + " " + label6 -> text();
-    //Отправка данных клиенту
-
-
-    thread_1.start();
+    emit send(label4 -> text() + " " + label5 -> text() + " " + label6 -> text());
 }
 
 void Server::slider1VChanged(int value)

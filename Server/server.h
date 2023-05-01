@@ -13,6 +13,8 @@ class Server : public QWidget
 public:
     Server(QWidget *parent = nullptr);
     ~Server();
+signals:
+    void send(QString m);
 private slots:
     void slider1VChanged(int value);
     void slider2VChanged(int value);
@@ -36,6 +38,6 @@ private:
 
     QPushButton *button = new QPushButton("Отправить");
 
-    SendData sender_1;
+    SendData *sender_1;
     QThread thread_1;
 };

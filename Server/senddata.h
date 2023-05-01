@@ -9,15 +9,14 @@ class SendData : public QObject
 
 public:
     explicit SendData(QObject *parent = nullptr);
-    QString messege;
 
 signals:
     void finished();
 
 public slots:
-    void send();
+    void send(QString m);
 private:
-    QUdpSocket *udpSocket = new QUdpSocket;
+    QUdpSocket *udpSocket = new QUdpSocket(this);
 };
 
 #endif // SENDDATA_H

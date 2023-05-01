@@ -3,11 +3,11 @@
 SendData::SendData(QObject *parent) :
     QObject(parent)
 {
-    qDebug() << "hello";
+
 }
 
-void SendData::send()
+void SendData::send(QString m)
 {
-    udpSocket -> writeDatagram(messege.toLatin1(), QHostAddress::LocalHost, 5555);
+    udpSocket -> writeDatagram(m.toLatin1(), QHostAddress::LocalHost, 5555);
     emit finished();
 }
